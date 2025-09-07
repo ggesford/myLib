@@ -18,15 +18,30 @@
       <h1>myLib</h1>
       <nav class="nav">
         <ul class="nav__tabs">
-          <li class="nav__tab"></li>
-          <li class="nav__tab"></li>
-          <li class="nav__tab"></li>
+          <li class="nav__tab">
+            <button class="nav__to-reads u-btn">Your To-Read Shelf</button>
+          </li>
+          <li class="nav__tab">
+            <button class="nav__all-books u-btn">Your All Books Shelf</button>
+          </li>
+          <li class="nav__tab">
+            <button class="nav__current-books u-btn">
+              Your Currently Reading Shelf
+            </button>
+          </li>
+          <li class="nav__tab">
+            <button class="nav__completed-books u-btn">
+              Your Completed Books Shelf
+            </button>
+          </li>
         </ul>
       </nav>
     </header>
     <main class="main">
-      <section class="shelf"><h2 class="shelf__title"></h2></section>
-      <aside class="sidebar"><h2 class="sidebar__title"></h2></aside>
+      <section class="shelf">
+        <h2 class="shelf__title"></h2>
+        <div class="shelf__cards"></div>
+      </section>
     </main>
     <footer>
       A project by <a href="https://github.com/ggesford">Gage Gesford</a>
