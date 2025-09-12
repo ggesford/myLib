@@ -1,3 +1,9 @@
+const addDialog = document.querySelector(".add-modal");
+const rateDialog = document.querySelector(".rate-modal");
+const openAddModal = document.querySelector(".header__add-btn");
+
+openAddModal.addEventListener("click", () => addDialog.showModal());
+
 const library = {
   bookList: [],
   appendBook: function (newBook) {
