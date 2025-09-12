@@ -49,5 +49,66 @@
     <footer class="footer">
       A project by <a href="https://github.com/ggesford">Gage Gesford</a>
     </footer>
+    <dialog class="add-modal modal">
+      <form action="">
+        <fieldset>
+          <legend>Enter Book Info!</legend>
+          <div>
+            <label for="title">Title:</label>
+            <input type="text" name="title" id="title" />
+          </div>
+          <div>
+            <label for="author">Author:</label>
+            <input type="text" name="author" id="author" />
+          </div>
+          <div>
+            <label for="pageCount">Page Count</label>
+            <input type="number" name="pageCount" id="pageCount" />
+          </div>
+          <fieldset>
+            <legend>Reading Status</legend>
+            <input type="radio" name="location" id="to-read" value="toRead" />
+            <label for="to-read">Have Not Yet Read</label>
+            <input
+              type="radio"
+              name="location"
+              id="current-books"
+              value="currentBook"
+            />
+            <label for="current-books">Currently Reading</label>
+            <input
+              type="radio"
+              name="location"
+              id="completed-books"
+              value="completeBook"
+            />
+            <label for="completed-books">Have Read</label>
+            <button type="submit" formaction="dialog">Add Book</button>
+          </fieldset>
+        </fieldset>
+      </form>
+    </dialog>
+    <dialog class="rate-modal modal">
+      <form action="">
+        <fieldset>
+          <legend>Rating/Review</legend>
+          <fieldset>
+            <legend>Rating</legend>
+            <input type="radio" name="Rating" id="one" value="1" />
+            <label for="one">1</label>
+            <input type="radio" name="Rating" id="two" value="2" />
+            <label for="one">2</label>
+            <input type="radio" name="Rating" id="three" value="3" />
+            <label for="one">3</label>
+            <input type="radio" name="Rating" id="four" value="4" />
+            <label for="one">4</label>
+            <input type="radio" name="Rating" id="five" value="5" />
+            <label for="one">5</label>
+          </fieldset>
+          <label for="review">Review(optional)</label>
+          <input type="text" name="review" id="review" />
+        </fieldset>
+      </form>
+    </dialog>
   </body>
 </html>
