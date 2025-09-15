@@ -1,8 +1,57 @@
 const addDialog = document.querySelector(".add-modal");
 const rateDialog = document.querySelector(".rate-modal");
 const openAddModal = document.querySelector(".header__add-btn");
+const haveReadAddOption = document.querySelector("#completed-books");
 
 openAddModal.addEventListener("click", () => addDialog.showModal());
+
+haveReadAddOption.addEventListener("click", (event) => {
+  const target = event.target;
+  const isActive = target.classList.toggle("active");
+  if (isActive) {
+    createRateFormSection();
+    appendRateFormSection();
+  } else {
+    deleteRateFormSection();
+  }
+});
+
+function createRateFormSection() {
+  const rateReviewSection = document.createElement("fieldset");
+  const rateReviewTitle = document.createElement("legend");
+  rateReviewTitle.textContent = "Rating/Review";
+  rateReviewSection.appendChild(rateReviewTitle);
+  const ratingSection = document.createElement("fieldset");
+  const ratingTitle = document.createElement("legend");
+  ratingTitle.textContent = "Rating";
+  ratingSection.appendChild(ratingTitle);
+  for (let i = 1; i <= 5; i++) {
+    const input = document.createElement("input");
+    input.type = "radio";
+    input.name = "rating";
+    input.id = `rating-${i}`;
+    input.value = i;
+    const label = document.createElement("label");
+    label.htmlFor = `rating-${i}`;
+    label.textContent = i;
+    ratingSection.appendChild(input);
+    ratingSection.appendChild(label);
+  }
+  rateReviewSection.appendChild(ratingSection);
+  const reviewTitle = document.createElement("label");
+  reviewTitle.htmlFor = "review";
+  reviewTitle.textContent = "Review(optional)";
+  rateReviewSection.appendChild(reviewTitle);
+  const reviewInput = document.createElement("textarea");
+  reviewInput.name = "review";
+  reviewInput.id = "review";
+  reviewInput.rows = "5";
+  reviewInput.cols = "33";
+  rateReviewSection.appendChild(reviewInput);
+  return rateReviewSection;
+}
+function deleteRateFormSection() {}
+function appendRateFormSection() {}
 
 const library = {
   bookList: [],
