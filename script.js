@@ -51,7 +51,11 @@ function createRateFormSection() {
   return rateReviewSection;
 }
 function deleteRateFormSection() {}
-function appendRateFormSection() {}
+function appendRateFormSection() {
+  const parentDiv = document.querySelector(".u-form-wrapper");
+  const belowButton = document.querySelector("u-insertBefore");
+  parentDiv.insertBefore(rateReviewSection, belowButton);
+}
 
 const library = {
   bookList: [],
