@@ -56,7 +56,7 @@ function deleteRateFormSection() {
   parentDiv.removeChild(rateReviewForm);
 }
 function appendRateFormSection() {
-  const belowButton = document.querySelector(".u-insertBefore");
+  const belowButton = document.querySelector("#insertBefore");
   parentDiv.insertBefore(rateReviewForm, belowButton);
 }
 
