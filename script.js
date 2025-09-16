@@ -4,6 +4,9 @@ const openAddModal = document.querySelector(".header__add-btn");
 const readStatusRadioSet = document.getElementsByName("location");
 const parentDiv = document.querySelector(".u-form-wrapper");
 const rateReviewForm = createRateFormSection();
+const addBookBtn = querySelector("#addBook");
+const bookGridWrapper = querySelector(".shelf__cards");
+
 openAddModal.addEventListener("click", () => addDialog.showModal());
 
 readStatusRadioSet.forEach((radio) =>
@@ -78,6 +81,43 @@ function Shelf(location) {
   this.filterBooks = function () {
     return library.bookList.filter((book) => book.location === this.location);
   };
+  this.renderBooks = function () {
+    filterBooks().forEach((book) => renderBook(book));
+  };
+  this.renderBook = function (book) {
+    const bookCard = document.createElement("div");
+    const bookTitleAuthor = document.createElement("h3");
+    bookTitleAuthor.textContent = `${book.title}, ${book.author}`;
+    bookCard.appendChild(bookTitleAuthor);
+    const bookPageCount = document.createElement("p");
+    bookPageCount.textContent = `Page Count: ${book.pageCount}`;
+    bookCard.appendChild(bookPageCount);
+    if (book.location === "completeBook") {
+      const bookRating = document.createElement("div");
+      const bookRatingTitle = document.createElement("p");
+      bookRatingTitle.textContent = "Rating:";
+      bookRating.appendChild(bookRatingTitle);
+      const bookRatingIcons = document.createElement("div");
+      for (let i = 1; i <= book.rate; i++) {
+        const bookRatingIcon = document.createElement("img");
+        bookRatingIcon.src =
+          "assets/images/bookmark-favorite-rating-star-svgrepo-com.svg";
+        bookRatingIcons.appendChild(bookRatingIcon);
+      }
+      bookRating.appendChild(bookRatingIcons);
+      bookCard.appendChild(bookRating);
+    }
+    const bookEdit = document.createElement("button");
+    const bookEditIcon = document.createElement("img");
+    bookEditIcon.src = "assets/images/gear-svgrepo-com.svg";
+    bookEdit.appendChild(bookEditIcon);
+    bookCard.appendChild(bookEdit);
+    const bookDelete = document.createElement("button");
+    const bookDeleteIcon = document.createElement("img");
+    bookDeleteIcon.src = "assets/images/trash-blank-alt-svgrepo-com.svg";
+    bookDelete.appendChild(bookDeleteIcon);
+    bookCard.appendChild(bookDelete);
+  };
 }
 
 function Book(title, author, pageCount, location, rate, review) {
@@ -87,6 +127,5 @@ function Book(title, author, pageCount, location, rate, review) {
   this.location = location;
   this.rate = rate;
   this.review = review;
-  this.getInfo;
   this.id = crypto.randomUUID();
 }
