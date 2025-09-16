@@ -1,20 +1,21 @@
 const addDialog = document.querySelector(".add-modal");
 const rateDialog = document.querySelector(".rate-modal");
 const openAddModal = document.querySelector(".header__add-btn");
-const haveReadAddOption = document.querySelector("#completed-books");
+const readStatusRadioSet = document.getElementsByName("location");
 const parentDiv = document.querySelector(".u-form-wrapper");
 const rateReviewForm = createRateFormSection();
 openAddModal.addEventListener("click", () => addDialog.showModal());
 
-haveReadAddOption.addEventListener("click", (event) => {
-  const target = event.target;
-  const isActive = target.classList.toggle("active");
-  if (isActive) {
-    appendRateFormSection(createRateFormSection());
-  } else {
-    deleteRateFormSection();
-  }
-});
+readStatusRadioSet.forEach((radio) =>
+  radio.addEventListener("change", (event) => {
+    const chosen = event.target;
+    if (chosen.value === "completeBook") {
+      appendRateFormSection(createRateFormSection());
+    } else {
+      deleteRateFormSection();
+    }
+  })
+);
 
 function createRateFormSection() {
   const rateReviewSection = document.createElement("fieldset");
