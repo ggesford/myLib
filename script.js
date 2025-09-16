@@ -2,15 +2,15 @@ const addDialog = document.querySelector(".add-modal");
 const rateDialog = document.querySelector(".rate-modal");
 const openAddModal = document.querySelector(".header__add-btn");
 const haveReadAddOption = document.querySelector("#completed-books");
-
+const parentDiv = document.querySelector(".u-form-wrapper");
+const rateReviewForm = createRateFormSection();
 openAddModal.addEventListener("click", () => addDialog.showModal());
 
 haveReadAddOption.addEventListener("click", (event) => {
   const target = event.target;
   const isActive = target.classList.toggle("active");
   if (isActive) {
-    createRateFormSection();
-    appendRateFormSection();
+    appendRateFormSection(createRateFormSection());
   } else {
     deleteRateFormSection();
   }
@@ -18,6 +18,7 @@ haveReadAddOption.addEventListener("click", (event) => {
 
 function createRateFormSection() {
   const rateReviewSection = document.createElement("fieldset");
+  rateReviewSection.classList = "add-modal__rate";
   const rateReviewTitle = document.createElement("legend");
   rateReviewTitle.textContent = "Rating/Review";
   rateReviewSection.appendChild(rateReviewTitle);
@@ -50,11 +51,12 @@ function createRateFormSection() {
   rateReviewSection.appendChild(reviewInput);
   return rateReviewSection;
 }
-function deleteRateFormSection() {}
+function deleteRateFormSection() {
+  parentDiv.removeChild(rateReviewForm);
+}
 function appendRateFormSection() {
-  const parentDiv = document.querySelector(".u-form-wrapper");
-  const belowButton = document.querySelector("u-insertBefore");
-  parentDiv.insertBefore(rateReviewSection, belowButton);
+  const belowButton = document.querySelector(".u-insertBefore");
+  parentDiv.insertBefore(rateReviewForm, belowButton);
 }
 
 const library = {
