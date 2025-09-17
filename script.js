@@ -82,7 +82,7 @@ function Shelf(location) {
     return library.bookList.filter((book) => book.location === this.location);
   };
   this.renderBooks = function () {
-    filterBooks().forEach((book) => renderBook(book));
+    this.filterBooks().forEach((book) => this.renderBook(book));
   };
   this.renderBook = function (book) {
     const bookCard = document.createElement("div");
@@ -98,7 +98,7 @@ function Shelf(location) {
       bookRatingTitle.textContent = "Rating:";
       bookRating.appendChild(bookRatingTitle);
       const bookRatingIcons = document.createElement("div");
-      for (let i = 1; i <= book.rate; i++) {
+      for (let i = 1; i <= (book.rate || 0); i++) {
         const bookRatingIcon = document.createElement("img");
         bookRatingIcon.src =
           "assets/images/bookmark-favorite-rating-star-svgrepo-com.svg";
@@ -117,6 +117,7 @@ function Shelf(location) {
     bookDeleteIcon.src = "assets/images/trash-blank-alt-svgrepo-com.svg";
     bookDelete.appendChild(bookDeleteIcon);
     bookCard.appendChild(bookDelete);
+    bookGridWrapper.appendChild(bookCard);
   };
 }
 
