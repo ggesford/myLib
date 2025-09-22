@@ -4,10 +4,23 @@ const openAddModal = document.querySelector(".header__add-btn");
 const readStatusRadioSet = document.getElementsByName("location");
 const parentDiv = document.querySelector(".u-form-wrapper");
 const rateReviewForm = createRateFormSection();
-const addBookBtn = querySelector("#addBook");
 const bookGridWrapper = querySelector(".shelf__cards");
 
 openAddModal.addEventListener("click", () => addDialog.showModal());
+
+addDialog.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const formData = new FormData(event.target);
+  const title = formData.get("title");
+  const author = formData.get("author");
+  const pageCount = formData.get("pageCount");
+  const location = formData.get("location");
+  const rating = formData.get("rating");
+  const review = formData.get("review");
+
+  const newBook = new Book(title, author, pageCount, location, rating, review);
+  library.appendBook(newBook);
+});
 
 readStatusRadioSet.forEach((radio) =>
   radio.addEventListener("change", (event) => {
