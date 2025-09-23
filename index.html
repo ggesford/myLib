@@ -61,7 +61,7 @@
           <legend>Enter Book Info!</legend>
           <div>
             <label for="title">Title:</label>
-            <input type="text" name="title" id="title" />
+            <input type="text" name="title" id="title" required />
           </div>
           <div>
             <label for="author">Author:</label>
@@ -73,13 +73,20 @@
           </div>
           <fieldset>
             <legend>Reading Status</legend>
-            <input type="radio" name="location" id="to-read" value="toRead" />
+            <input
+              type="radio"
+              name="location"
+              id="to-read"
+              value="toRead"
+              required
+            />
             <label for="to-read">Have Not Yet Read</label>
             <input
               type="radio"
               name="location"
               id="current-books"
               value="currentBook"
+              required
             />
             <label for="current-books">Currently Reading</label>
             <input
@@ -87,6 +94,7 @@
               name="location"
               id="completed-books"
               value="completeBook"
+              required
             />
             <label for="completed-books">Have Read</label>
           </fieldset>

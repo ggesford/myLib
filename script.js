@@ -130,7 +130,7 @@ function createRateFormSection() {
   rateReviewSection.appendChild(ratingSection);
   const reviewTitle = document.createElement("label");
   reviewTitle.htmlFor = "review";
-  reviewTitle.textContent = "Review(optional)";
+  reviewTitle.textContent = "Review";
   rateReviewSection.appendChild(reviewTitle);
   const reviewInput = document.createElement("textarea");
   reviewInput.name = "review";
