@@ -7,6 +7,7 @@ const readStatusRadioSet = document.getElementsByName("location");
 const parentDiv = document.querySelector(".u-form-wrapper");
 const rateReviewForm = createRateFormSection();
 const bookGridWrapper = document.querySelector(".shelf__cards");
+const shelfTitle = document.querySelector(".shelf__title");
 
 function renderBook(book) {
   const bookCard = document.createElement("div");
@@ -57,6 +58,7 @@ function clearBooks() {
 function refreshBooks(shelf) {
   clearBooks();
   renderBooks(shelf);
+  shelfTitle.textContent = shelf.location;
 }
 
 function createRateFormSection() {
@@ -123,8 +125,8 @@ const library = {
 function Shelf(location) {
   this.location = location;
   this.filterBooks = function () {
-    if (this.location === allBooks) {
-      return bookList;
+    if (this.location === "allBooks") {
+      return library.bookList;
     } else {
       return library.bookList.filter((book) => book.location === this.location);
     }
@@ -147,7 +149,9 @@ function Book(title, author, pageCount, location, rate, review) {
 //Page Initialization//
 
 function initializePage() {
-  const shelf = new Shelf(allBooks);
+  shelf = new Shelf();
+  shelf.switchLocation("allBooks");
+  refreshBooks(shelf);
 }
 
 //Event Listeners//
@@ -181,3 +185,7 @@ readStatusRadioSet.forEach((radio) =>
     }
   })
 );
+
+document.addEventListener("DOMContentLoaded", () => {
+  initializePage();
+});
