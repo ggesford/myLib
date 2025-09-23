@@ -11,35 +11,50 @@ const shelfTitle = document.querySelector(".shelf__title");
 
 function renderBook(book) {
   const bookCard = document.createElement("div");
+  bookCard.classList.add("card");
   bookCard.dataset.id = book.id;
   const bookTitleAuthor = document.createElement("h3");
+  bookTitleAuthor.classList.add("card__title");
   bookTitleAuthor.textContent = `${book.title}, ${book.author}`;
   bookCard.appendChild(bookTitleAuthor);
   const bookPageCount = document.createElement("p");
+  bookPageCount.classList.add("card__page-count");
   bookPageCount.textContent = `Page Count: ${book.pageCount}`;
   bookCard.appendChild(bookPageCount);
   if (book.location === "completeBook") {
     const bookRating = document.createElement("div");
+    bookRating.classList.add("rating");
     const bookRatingTitle = document.createElement("p");
+    bookRatingTitle.classList.add("rating__title");
     bookRatingTitle.textContent = "Rating:";
     bookRating.appendChild(bookRatingTitle);
     const bookRatingIcons = document.createElement("div");
+    bookRatingIcons.classList.add("rating__star-container");
     for (let i = 1; i <= (book.rate || 0); i++) {
       const bookRatingIcon = document.createElement("img");
+      bookRatingIcon.classList.add("u-icon rating__star");
       bookRatingIcon.src =
         "assets/images/bookmark-favorite-rating-star-svgrepo-com.svg";
       bookRatingIcons.appendChild(bookRatingIcon);
     }
     bookRating.appendChild(bookRatingIcons);
     bookCard.appendChild(bookRating);
+    const readReview = document.createElement("p");
+    readReview.textContent = "Read Review";
+    readReview.classList.add("card__review");
+    bookCard.appendChild(readReview);
   }
   const bookEdit = document.createElement("button");
+  bookEdit.classList.add("card__button", "card__button:edit");
   const bookEditIcon = document.createElement("img");
+  bookEditIcon.classList.add("u-icon");
   bookEditIcon.src = "assets/images/gear-svgrepo-com.svg";
   bookEdit.appendChild(bookEditIcon);
   bookCard.appendChild(bookEdit);
   const bookDelete = document.createElement("button");
+  bookDelete.classList.add("card__button", "card__button:delete");
   const bookDeleteIcon = document.createElement("img");
+  bookDeleteIcon.classList.add("u-icon");
   bookDeleteIcon.src = "assets/images/trash-blank-alt-svgrepo-com.svg";
   bookDelete.appendChild(bookDeleteIcon);
   bookCard.appendChild(bookDelete);
