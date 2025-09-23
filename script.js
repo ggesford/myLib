@@ -49,6 +49,11 @@ function renderBooks(shelf) {
   shelf.filterBooks().forEach(renderBook);
 }
 
+function clearBooks() {
+  const bookCards = document.querySelectorAll(".shelf__cards > *");
+  bookCards.forEach((book) => bookGridWrapper.removeChild(book));
+}
+
 function createRateFormSection() {
   const rateReviewSection = document.createElement("fieldset");
   rateReviewSection.classList = "add-modal__rate";
@@ -112,7 +117,14 @@ const library = {
 function Shelf(location) {
   this.location = location;
   this.filterBooks = function () {
-    return library.bookList.filter((book) => book.location === this.location);
+    if (this.location === allBooks) {
+      return bookList;
+    } else {
+      return library.bookList.filter((book) => book.location === this.location);
+    }
+  };
+  this.switchLocation = function (location) {
+    this.location = location;
   };
 }
 
@@ -124,6 +136,12 @@ function Book(title, author, pageCount, location, rate, review) {
   this.rate = rate;
   this.review = review;
   this.id = crypto.randomUUID();
+}
+
+//Page Initialization//
+
+function initializePage() {
+  const shelf = new Shelf(allBooks);
 }
 
 //Event Listeners//
@@ -142,6 +160,9 @@ addDialog.addEventListener("submit", (event) => {
 
   const newBook = new Book(title, author, pageCount, location, rating, review);
   library.appendBook(newBook);
+  console.log(library.bookList);
+  console.log(newBook.id);
+  addDialog.close();
 });
 
 readStatusRadioSet.forEach((radio) =>
