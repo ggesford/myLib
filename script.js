@@ -8,6 +8,12 @@ const parentDiv = document.querySelector(".u-form-wrapper");
 const rateReviewForm = createRateFormSection();
 const bookGridWrapper = document.querySelector(".shelf__cards");
 const shelfTitle = document.querySelector(".shelf__title");
+const addDialogForm = document.querySelector(".add-modal__form");
+const formTitle = document.getElementById("title");
+const formAuthor = document.getElementById("author");
+const formPageCount = document.getElementById("pageCount");
+const formRating = document.getElementsByName("rating");
+const formReview = document.getElementById("review");
 
 function renderBook(book) {
   const bookCard = document.createElement("div");
@@ -45,6 +51,12 @@ function renderBook(book) {
     bookCard.appendChild(readReview);
   }
   const bookEdit = document.createElement("button");
+  bookEdit.addEventListener("click", (event) => {
+    isEditing = bookCard.dataset.id;
+    index = library.findBook(bookCard.dataset.id);
+    populateForm(library.bookList[index]);
+    addDialog.showModal();
+  });
   bookEdit.classList.add("card__button", "card__button:edit");
   const bookEditIcon = document.createElement("img");
   bookEditIcon.classList.add("u-icon");
@@ -53,7 +65,7 @@ function renderBook(book) {
   bookCard.appendChild(bookEdit);
   const bookDelete = document.createElement("button");
   bookDelete.classList.add("card__button", "card__button:delete");
-  bookDelete.addEventListener("click", (event) => {
+  bookDelete.addEventListener("click", () => {
     library.deleteBook(bookCard.dataset.id);
     refreshBooks(initialShelf);
   });
@@ -78,6 +90,19 @@ function refreshBooks(shelf) {
   clearBooks();
   renderBooks(shelf);
   shelfTitle.textContent = shelf.location;
+}
+
+function populateForm(book) {
+  formTitle.value = book.title;
+  formAuthor.value = book.author;
+  formPageCount.value = book.pageCount;
+  readStatusRadioSet.forEach((radio) => {
+    radio.checked = radio.value === book.location;
+  });
+  formRating.forEach((rating) => {
+    rating.checked = rating.value === book.rate;
+  });
+  formReview.value = book.review;
 }
 
 function createRateFormSection() {
@@ -127,14 +152,20 @@ function appendRateFormSection() {
 
 //Data Handling//
 let initialShelf;
+let isEditing = null;
 
 const library = {
   bookList: [],
   appendBook: function (newBook) {
     this.bookList.push(newBook);
   },
-  deleteBook: function (bookID) {
+  findBook: function (bookID) {
     let index = this.bookList.findIndex((book) => book.id === bookID);
+    return index;
+  },
+
+  deleteBook: function (bookID) {
+    let index = this.findBook(bookID);
     if (index !== -1) {
       this.bookList.splice(index, 1);
     }
@@ -163,6 +194,21 @@ function Book(title, author, pageCount, location, rate, review) {
   this.rate = rate;
   this.review = review;
   this.id = crypto.randomUUID();
+  this.overwriteBook = function (
+    newTitle,
+    newAuthor,
+    newPageCount,
+    newLocation,
+    newRating,
+    newReview
+  ) {
+    this.title = newTitle;
+    this.author = newAuthor;
+    this.pageCount = newPageCount;
+    this.location = newLocation;
+    this.rate = newRating;
+    this.review = newReview;
+  };
 }
 
 //Page Initialization//
@@ -186,10 +232,32 @@ addDialog.addEventListener("submit", (event) => {
   const location = formData.get("location");
   const rating = formData.get("rating");
   const review = formData.get("review");
-  const newBook = new Book(title, author, pageCount, location, rating, review);
-  library.appendBook(newBook);
+  if (isEditing === null) {
+    const newBook = new Book(
+      title,
+      author,
+      pageCount,
+      location,
+      rating,
+      review
+    );
+    library.appendBook(newBook);
+    console.log(newBook.id);
+  } else {
+    index = library.findBook(isEditing);
+    library.bookList[index].overwriteBook(
+      title,
+      author,
+      pageCount,
+      location,
+      rating,
+      review
+    );
+    isEditing = null;
+  }
+
   console.log(library.bookList);
-  console.log(newBook.id);
+  addDialogForm.reset();
   addDialog.close();
   refreshBooks(initialShelf);
 });
