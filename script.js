@@ -54,6 +54,11 @@ function clearBooks() {
   bookCards.forEach((book) => bookGridWrapper.removeChild(book));
 }
 
+function refreshBooks(shelf) {
+  clearBooks();
+  renderBooks(shelf);
+}
+
 function createRateFormSection() {
   const rateReviewSection = document.createElement("fieldset");
   rateReviewSection.classList = "add-modal__rate";
@@ -100,6 +105,7 @@ function appendRateFormSection() {
 }
 
 //Data Handling//
+let shelf;
 
 const library = {
   bookList: [],
@@ -157,12 +163,12 @@ addDialog.addEventListener("submit", (event) => {
   const location = formData.get("location");
   const rating = formData.get("rating");
   const review = formData.get("review");
-
   const newBook = new Book(title, author, pageCount, location, rating, review);
   library.appendBook(newBook);
   console.log(library.bookList);
   console.log(newBook.id);
   addDialog.close();
+  refreshBooks(shelf);
 });
 
 readStatusRadioSet.forEach((radio) =>
