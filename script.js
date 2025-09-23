@@ -53,6 +53,10 @@ function renderBook(book) {
   bookCard.appendChild(bookEdit);
   const bookDelete = document.createElement("button");
   bookDelete.classList.add("card__button", "card__button:delete");
+  bookDelete.addEventListener("click", (event) => {
+    library.deleteBook(bookCard.dataset.id);
+    refreshBooks(initialShelf);
+  });
   const bookDeleteIcon = document.createElement("img");
   bookDeleteIcon.classList.add("u-icon");
   bookDeleteIcon.src = "assets/images/trash-blank-alt-svgrepo-com.svg";
