@@ -107,7 +107,7 @@ function appendRateFormSection() {
 }
 
 //Data Handling//
-let shelf;
+let initialShelf;
 
 const library = {
   bookList: [],
@@ -149,9 +149,9 @@ function Book(title, author, pageCount, location, rate, review) {
 //Page Initialization//
 
 function initializePage() {
-  shelf = new Shelf();
-  shelf.switchLocation("allBooks");
-  refreshBooks(shelf);
+  initialShelf = new Shelf();
+  initialShelf.switchLocation("allBooks");
+  refreshBooks(initialShelf);
 }
 
 //Event Listeners//
@@ -172,7 +172,7 @@ addDialog.addEventListener("submit", (event) => {
   console.log(library.bookList);
   console.log(newBook.id);
   addDialog.close();
-  refreshBooks(shelf);
+  refreshBooks(initialShelf);
 });
 
 readStatusRadioSet.forEach((radio) =>
