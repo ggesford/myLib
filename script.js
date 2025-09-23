@@ -32,7 +32,7 @@ function renderBook(book) {
     bookRatingIcons.classList.add("rating__star-container");
     for (let i = 1; i <= (book.rate || 0); i++) {
       const bookRatingIcon = document.createElement("img");
-      bookRatingIcon.classList.add("u-icon rating__star");
+      bookRatingIcon.classList.add("u-icon", "rating__star");
       bookRatingIcon.src =
         "assets/images/bookmark-favorite-rating-star-svgrepo-com.svg";
       bookRatingIcons.appendChild(bookRatingIcon);
