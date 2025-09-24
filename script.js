@@ -14,6 +14,7 @@ const formAuthor = document.getElementById("author");
 const formPageCount = document.getElementById("pageCount");
 const formRating = document.getElementsByName("rating");
 const formReview = document.getElementById("review");
+const shelfTabs = document.querySelectorAll(".u-tab");
 
 function renderBook(book) {
   const bookCard = document.createElement("div");
@@ -270,6 +271,13 @@ readStatusRadioSet.forEach((radio) =>
     } else {
       deleteRateFormSection();
     }
+  })
+);
+
+shelfTabs.forEach((tab) =>
+  tab.addEventListener("click", (event) => {
+    initialShelf.switchLocation(event.target.dataset.id);
+    refreshBooks(initialShelf);
   })
 );
 
