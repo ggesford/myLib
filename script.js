@@ -51,6 +51,8 @@ function renderBook(book) {
     readReview.classList.add("card__review");
     bookCard.appendChild(readReview);
   }
+  const bookButtons = document.createElement("div");
+  bookButtons.classList.add("card__buttons");
   const bookEdit = document.createElement("button");
   bookEdit.addEventListener("click", (event) => {
     isEditing = bookCard.dataset.id;
@@ -63,7 +65,7 @@ function renderBook(book) {
   bookEditIcon.classList.add("u-icon");
   bookEditIcon.src = "assets/images/gear-svgrepo-com.svg";
   bookEdit.appendChild(bookEditIcon);
-  bookCard.appendChild(bookEdit);
+  bookButtons.appendChild(bookEdit);
   const bookDelete = document.createElement("button");
   bookDelete.classList.add("card__button", "card__button:delete");
   bookDelete.addEventListener("click", () => {
@@ -74,7 +76,8 @@ function renderBook(book) {
   bookDeleteIcon.classList.add("u-icon");
   bookDeleteIcon.src = "assets/images/trash-blank-alt-svgrepo-com.svg";
   bookDelete.appendChild(bookDeleteIcon);
-  bookCard.appendChild(bookDelete);
+  bookButtons.appendChild(bookDelete);
+  bookCard.appendChild(bookButtons);
   bookGridWrapper.appendChild(bookCard);
 }
 
