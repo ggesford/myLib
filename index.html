@@ -61,6 +61,7 @@
     </footer>
     <dialog class="add-modal modal">
       <form class="add-modal__form" method="dialog">
+        <button type="button">X</button>
         <fieldset class="u-form-wrapper">
           <legend>Enter Book Info!</legend>
           <div>
@@ -102,33 +103,22 @@
             />
             <label for="completed-books">Have Read</label>
           </fieldset>
-          <button id="insertBefore" type="submit" formaction="dialog">
+          <button
+            class="u-btn u-exit-btn add-modal__exit-btn"
+            id="insertBefore"
+            type="submit"
+            formaction="dialog"
+          >
             Submit
           </button>
         </fieldset>
       </form>
     </dialog>
-    <dialog class="rate-modal modal">
-      <form action="">
-        <fieldset>
-          <legend>Rating/Review</legend>
-          <fieldset>
-            <legend>Rating</legend>
-            <input type="radio" name="rating" id="one" value="1" />
-            <label for="one">1</label>
-            <input type="radio" name="rating" id="two" value="2" />
-            <label for="two">2</label>
-            <input type="radio" name="rating" id="three" value="3" />
-            <label for="three">3</label>
-            <input type="radio" name="rating" id="four" value="4" />
-            <label for="four">4</label>
-            <input type="radio" name="rating" id="five" value="5" />
-            <label for="five">5</label>
-          </fieldset>
-          <label for="review">Review(optional)</label>
-          <input type="text" name="review" id="review" />
-        </fieldset>
-      </form>
+    <dialog class="review-modal modal">
+      <button class="review-modal__exit-btn u-btn u-exit-btn" type="button">
+        X
+      </button>
+      <p class="review-modal__text"></p>
     </dialog>
   </body>
 </html>

@@ -1,7 +1,8 @@
 //UI Rendering//
 
 const addDialog = document.querySelector(".add-modal");
-const rateDialog = document.querySelector(".rate-modal");
+const reviewDialog = document.querySelector(".review-modal");
+const exitButton = document.querySelectorAll(".u-exit-btn");
 const openAddModal = document.querySelector(".header__add-btn");
 const readStatusRadioSet = document.getElementsByName("location");
 const parentDiv = document.querySelector(".u-form-wrapper");
@@ -103,10 +104,18 @@ function populateForm(book) {
   readStatusRadioSet.forEach((radio) => {
     radio.checked = radio.value === book.location;
   });
-  formRating.forEach((rating) => {
-    rating.checked = rating.value === book.rate;
-  });
-  formReview.value = book.review;
+
+  if (book.location === "completeBook") {
+    appendRateFormSection();
+    const formRating = document.getElementsByName("rating");
+    const formReview = document.getElementById("review");
+    formRating.forEach((rating) => {
+      rating.checked = rating.value === book.rate;
+    });
+    formReview.value = book.review;
+  } else {
+    deleteRateFormSection();
+  }
 }
 
 function createRateFormSection() {
@@ -146,12 +155,16 @@ function createRateFormSection() {
 }
 
 function deleteRateFormSection() {
-  parentDiv.removeChild(rateReviewForm);
+  if (parentDiv.contains(rateReviewForm)) {
+    parentDiv.removeChild(rateReviewForm);
+  }
 }
 
 function appendRateFormSection() {
   const belowButton = document.querySelector("#insertBefore");
-  parentDiv.insertBefore(rateReviewForm, belowButton);
+  if (!parentDiv.contains(rateReviewForm)) {
+    parentDiv.insertBefore(rateReviewForm, belowButton);
+  }
 }
 
 //Data Handling//
@@ -226,6 +239,16 @@ function initializePage() {
 //Event Listeners//
 
 openAddModal.addEventListener("click", () => addDialog.showModal());
+
+exitButton.forEach((btn) =>
+  btn.addEventListener("click", () => {
+    if (addDialog.open) {
+      addDialog.close();
+    } else if (reviewDialog.open) {
+      reviewDialog.close();
+    }
+  })
+);
 
 addDialog.addEventListener("submit", (event) => {
   event.preventDefault();

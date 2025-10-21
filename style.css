@@ -69,6 +69,18 @@ body {
 .u-icon {
   height: 3rem;
 }
+
+.u-btn {
+  border: none;
+  border-radius: 10px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.u-btn:hover {
+  background-color: lavender;
+}
+
 /*Global Styling*/
 body,
 html {
@@ -87,6 +99,8 @@ body {
   position: sticky;
   top: 0;
   border-bottom: solid 2px black;
+  padding: 16px;
+  background-color: white;
 }
 
 /*Branding Styling*/
@@ -100,7 +114,57 @@ body {
   padding: none;
 }
 /*Main Styling*/
+.main {
+  padding: 16px;
+}
+
+/*Card Styling*/
+.card {
+  display: flex;
+  flex-direction: column;
+  border: solid 2px black;
+  border-radius: 10px;
+  margin-top: 16px;
+  padding: 8px;
+}
+.card__review {
+  display: inline;
+  color: blue;
+  text-decoration: underline;
+}
+
+.card__review:hover {
+  color: orange;
+  cursor: pointer;
+}
+.rating__star-container {
+  display: flex;
+}
+
+.card__buttons {
+  display: flex;
+  justify-content: end;
+  gap: 8px;
+}
+
+.card__button {
+  border: none;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.card__button:hover {
+  background-color: lavender;
+  cursor: pointer;
+}
+
 /*Shelf Styling*/
+.shelf__cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 16px;
+}
+
 /*Footer Styling*/
 .footer {
   text-align: center;
