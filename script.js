@@ -1,6 +1,7 @@
 //UI Rendering//
 
 const addDialog = document.querySelector(".add-modal");
+const reviewText = document.querySelector(".review-modal__text");
 const reviewDialog = document.querySelector(".review-modal");
 const exitButton = document.querySelectorAll(".u-exit-btn");
 const openAddModal = document.querySelector(".header__add-btn");
@@ -32,10 +33,6 @@ function renderBook(book) {
   if (book.location === "completeBook") {
     const bookRating = document.createElement("div");
     bookRating.classList.add("rating");
-    const bookRatingTitle = document.createElement("p");
-    bookRatingTitle.classList.add("rating__title");
-    bookRatingTitle.textContent = "Rating:";
-    bookRating.appendChild(bookRatingTitle);
     const bookRatingIcons = document.createElement("div");
     bookRatingIcons.classList.add("rating__star-container");
     for (let i = 1; i <= (book.rate || 0); i++) {
@@ -47,15 +44,23 @@ function renderBook(book) {
     }
     bookRating.appendChild(bookRatingIcons);
     bookCard.appendChild(bookRating);
-    const readReview = document.createElement("p");
-    readReview.textContent = "Read Review";
-    readReview.classList.add("card__review");
-    bookCard.appendChild(readReview);
   }
   const bookButtons = document.createElement("div");
   bookButtons.classList.add("card__buttons");
+  const bookReviewView = document.createElement("button");
+  bookReviewView.addEventListener("click", () => {
+    index = library.findBook(bookCard.dataset.id);
+    populateReview(library.bookList[index]);
+    reviewDialog.showModal();
+  });
+  bookReviewView.classList.add("card__button", "card__button:review-view");
+  const bookReviewViewIcon = document.createElement("img");
+  bookReviewViewIcon.classList.add("u-icon");
+  bookReviewViewIcon.src = "assets/images/memo-svgrepo-com.svg";
+  bookReviewView.appendChild(bookReviewViewIcon);
+  bookButtons.appendChild(bookReviewView);
   const bookEdit = document.createElement("button");
-  bookEdit.addEventListener("click", (event) => {
+  bookEdit.addEventListener("click", () => {
     isEditing = bookCard.dataset.id;
     index = library.findBook(bookCard.dataset.id);
     populateForm(library.bookList[index]);
@@ -116,6 +121,10 @@ function populateForm(book) {
   } else {
     deleteRateFormSection();
   }
+}
+
+function populateReview(book) {
+  reviewText.textContent = book.review;
 }
 
 function createRateFormSection() {
