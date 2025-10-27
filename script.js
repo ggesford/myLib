@@ -38,8 +38,7 @@ function renderBook(book) {
     for (let i = 1; i <= (book.rate || 0); i++) {
       const bookRatingIcon = document.createElement("img");
       bookRatingIcon.classList.add("u-icon", "rating__star");
-      bookRatingIcon.src =
-        "assets/images/bookmark-favorite-rating-star-svgrepo-com.svg";
+      bookRatingIcon.src = "assets/images/star-sharp-svgrepo-com.svg";
       bookRatingIcons.appendChild(bookRatingIcon);
     }
     bookRating.appendChild(bookRatingIcons);
