@@ -46,18 +46,20 @@ function renderBook(book) {
   }
   const bookButtons = document.createElement("div");
   bookButtons.classList.add("card__buttons");
-  const bookReviewView = document.createElement("button");
-  bookReviewView.addEventListener("click", () => {
-    index = library.findBook(bookCard.dataset.id);
-    populateReview(library.bookList[index]);
-    reviewDialog.showModal();
-  });
-  bookReviewView.classList.add("card__button", "card__button:review-view");
-  const bookReviewViewIcon = document.createElement("img");
-  bookReviewViewIcon.classList.add("u-icon");
-  bookReviewViewIcon.src = "assets/images/memo-svgrepo-com.svg";
-  bookReviewView.appendChild(bookReviewViewIcon);
-  bookButtons.appendChild(bookReviewView);
+  if (book.location === "completeBook") {
+    const bookReviewView = document.createElement("button");
+    bookReviewView.addEventListener("click", () => {
+      index = library.findBook(bookCard.dataset.id);
+      populateReview(library.bookList[index]);
+      reviewDialog.showModal();
+    });
+    bookReviewView.classList.add("card__button", "card__button:review-view");
+    const bookReviewViewIcon = document.createElement("img");
+    bookReviewViewIcon.classList.add("u-icon");
+    bookReviewViewIcon.src = "assets/images/memo-svgrepo-com.svg";
+    bookReviewView.appendChild(bookReviewViewIcon);
+    bookButtons.appendChild(bookReviewView);
+  }
   const bookEdit = document.createElement("button");
   bookEdit.addEventListener("click", () => {
     isEditing = bookCard.dataset.id;
