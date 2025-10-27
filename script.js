@@ -244,6 +244,7 @@ exitButton.forEach((btn) =>
   btn.addEventListener("click", () => {
     if (addDialog.open) {
       addDialog.close();
+      addDialogForm.reset();
     } else if (reviewDialog.open) {
       reviewDialog.close();
     }
