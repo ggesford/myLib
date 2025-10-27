@@ -96,10 +96,19 @@ function clearBooks() {
   bookCards.forEach((book) => bookGridWrapper.removeChild(book));
 }
 
+function separateCamelCase(initialPhrase) {
+  const arr = initialPhrase.split("");
+  let index = arr.findIndex((char) => char === char.toUpperCase());
+  let firstWord =
+    initialPhrase.slice(0, 1).toUpperCase() + initialPhrase.slice(1, index);
+  let secondWord = initialPhrase.slice(index);
+  return `${firstWord} ${secondWord}s`;
+}
+
 function refreshBooks(shelf) {
   clearBooks();
   renderBooks(shelf);
-  shelfTitle.textContent = shelf.location;
+  shelfTitle.textContent = separateCamelCase(shelf.location);
 }
 
 function populateForm(book) {
@@ -201,7 +210,7 @@ const library = {
 function Shelf(location) {
   this.location = location;
   this.filterBooks = function () {
-    if (this.location === "allBooks") {
+    if (this.location === "allBook") {
       return library.bookList;
     } else {
       return library.bookList.filter((book) => book.location === this.location);
@@ -241,7 +250,7 @@ function Book(title, author, pageCount, location, rate, review) {
 
 function initializePage() {
   initialShelf = new Shelf();
-  initialShelf.switchLocation("allBooks");
+  initialShelf.switchLocation("allBook");
   refreshBooks(initialShelf);
 }
 
