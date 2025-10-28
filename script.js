@@ -43,10 +43,14 @@ function renderBook(book) {
     }
     bookRating.appendChild(bookRatingIcons);
     bookCard.appendChild(bookRating);
+  } else {
+    const bufferBox = document.createElement("div");
+    bufferBox.classList.add("card__buffer-box");
+    bookCard.appendChild(bufferBox);
   }
   const bookButtons = document.createElement("div");
   bookButtons.classList.add("card__buttons");
-  if (book.location === "completeBook") {
+  if (book.review) {
     const bookReviewView = document.createElement("button");
     bookReviewView.addEventListener("click", () => {
       index = library.findBook(bookCard.dataset.id);

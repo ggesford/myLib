@@ -165,6 +165,11 @@ body {
   cursor: pointer;
 }
 
+.card__buffer-box {
+  height: 48px;
+  width: max-content;
+}
+
 /*Shelf Styling*/
 .shelf__cards {
   display: grid;
