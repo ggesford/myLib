@@ -37,7 +37,7 @@ function renderBook(book) {
     bookRatingIcons.classList.add("rating__star-container");
     for (let i = 1; i <= (book.rate || 0); i++) {
       const bookRatingIcon = document.createElement("img");
-      bookRatingIcon.classList.add("u-icon", "rating__star");
+      bookRatingIcon.classList.add("rating__star");
       bookRatingIcon.src = "assets/images/star-sharp-svgrepo-com.svg";
       bookRatingIcons.appendChild(bookRatingIcon);
     }
@@ -57,9 +57,9 @@ function renderBook(book) {
       populateReview(library.bookList[index]);
       reviewDialog.showModal();
     });
-    bookReviewView.classList.add("card__button", "card__button:review-view");
+    bookReviewView.classList.add("card__button", "card__button--review-view");
     const bookReviewViewIcon = document.createElement("img");
-    bookReviewViewIcon.classList.add("u-icon");
+    bookReviewViewIcon.classList.add("u-icon--small");
     bookReviewViewIcon.src = "assets/images/memo-svgrepo-com.svg";
     bookReviewView.appendChild(bookReviewViewIcon);
     bookButtons.appendChild(bookReviewView);
@@ -71,20 +71,20 @@ function renderBook(book) {
     populateForm(library.bookList[index]);
     addDialog.showModal();
   });
-  bookEdit.classList.add("card__button", "card__button:edit");
+  bookEdit.classList.add("card__button", "card__button--edit");
   const bookEditIcon = document.createElement("img");
-  bookEditIcon.classList.add("u-icon");
+  bookEditIcon.classList.add("u-icon--small");
   bookEditIcon.src = "assets/images/gear-svgrepo-com.svg";
   bookEdit.appendChild(bookEditIcon);
   bookButtons.appendChild(bookEdit);
   const bookDelete = document.createElement("button");
-  bookDelete.classList.add("card__button", "card__button:delete");
+  bookDelete.classList.add("card__button", "card__button--delete");
   bookDelete.addEventListener("click", () => {
     library.deleteBook(bookCard.dataset.id);
     refreshBooks(initialShelf);
   });
   const bookDeleteIcon = document.createElement("img");
-  bookDeleteIcon.classList.add("u-icon");
+  bookDeleteIcon.classList.add("u-icon--small");
   bookDeleteIcon.src = "assets/images/trash-blank-alt-svgrepo-com.svg";
   bookDelete.appendChild(bookDeleteIcon);
   bookButtons.appendChild(bookDelete);
