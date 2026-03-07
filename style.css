@@ -89,6 +89,21 @@ body {
   transform: translate(-50%, -50%);
   border-radius: 10px;
 }
+
+.u-tab {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  transform: translateY(36px);
+  background-color: lavender;
+  width: 360px;
+}
+
+#u-active {
+  background-color: white;
+  height: 32px;
+  border-bottom: 0;
+  transform: translateY(34px);
+}
 /*Global Styling*/
 body,
 html {
@@ -122,7 +137,7 @@ body {
 .nav__tabs {
   display: flex;
   list-style-type: none;
-  padding: none;
+  padding: 0;
 }
 /*Main Styling*/
 .main {
@@ -138,6 +153,7 @@ body {
   margin-top: 16px;
   padding: 8px;
 }
+
 .card__review {
   display: inline;
   color: blue;
@@ -148,6 +164,7 @@ body {
   color: orange;
   cursor: pointer;
 }
+
 .rating__star-container {
   display: flex;
   justify-content: space-evenly;

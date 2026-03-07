@@ -327,6 +327,10 @@ readStatusRadioSet.forEach((radio) =>
 shelfTabs.forEach((tab) =>
   tab.addEventListener("click", (event) => {
     initialShelf.switchLocation(event.target.dataset.id);
+    document.querySelectorAll("#u-active").forEach((tab) => {
+      tab.id = "";
+    });
+    event.target.id = "u-active";
     refreshBooks(initialShelf);
   })
 );
