@@ -73,7 +73,16 @@ body {
     "Helvetica Neue",
     sans-serif;
   font-size: 16px;
-  color: #222;
+  color: var(--main-typ-clr);
+}
+/*Variables*/
+:root {
+  --main-typ-clr: #eaeaea;
+  --main-typdark-clr: #050404;
+  --main-bg-clr: #eaeaea;
+  --main-brdr-clr: #4a1942;
+  --main-nav-clr: #2e1c2b;
+  --main-actn-clr: #893168;
 }
 /*Utility Classes*/
 
@@ -84,14 +93,16 @@ body {
 .u-btn {
   padding-left: 8px;
   padding-right: 8px;
-  border: solid black 2px;
+  border: solid var(--main-brdr-clr) 2px;
   border-radius: 10px;
-  background-color: white;
+  background-color: var(--main-brdr-clr);
+  color: var(--main-typ-clr);
   cursor: pointer;
 }
 
 .u-btn:hover {
-  background-color: lavender;
+  background-color: var(--main-actn-clr);
+  border-color: var(--main-actn-clr);
 }
 
 .u-modal {
@@ -106,15 +117,23 @@ body {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   transform: translateY(36px);
-  background-color: lavender;
+  border-color: var(--main-brdr-clr);
+  background-color: var(--main-nav-clr);
   width: 360px;
+  color: var(--main-typ-clr);
+}
+
+.u-tab:not(#u-active):hover {
+  background-color: var(--main-actn-clr);
 }
 
 #u-active {
-  background-color: white;
+  background-color: var(--main-bg-clr);
   height: 32px;
   border-bottom: 0;
   transform: translateY(34px);
+  z-index: 2;
+  color: var(--main-typdark-clr);
 }
 /*Global Styling*/
 body,
@@ -133,9 +152,10 @@ body {
   justify-content: space-between;
   position: sticky;
   top: 0;
-  border-bottom: solid 2px black;
+  border-bottom: solid 2px var(--main-brdr-clr);
   padding: 16px;
-  background-color: white;
+  background-color: var(--main-nav-clr);
+  z-index: 1;
 }
 
 /*Branding Styling*/
@@ -150,17 +170,19 @@ body {
   display: flex;
   list-style-type: none;
   padding: 0;
+  z-index: 0;
 }
 /*Main Styling*/
 .main {
   padding: 16px;
+  background-color: var(--main-bg-clr);
 }
 
 /*Card Styling*/
 .card {
   display: flex;
   flex-direction: column;
-  border: solid 2px black;
+  border: solid 2px var(--main-brdr-clr);
   border-radius: 10px;
   margin-top: 16px;
   padding: 8px;
@@ -193,7 +215,7 @@ body {
 
 .card__button {
   border: none;
-  background-color: white;
+  background-color: var(--main-bg-clr);
   border-radius: 10px;
 }
 
@@ -217,7 +239,7 @@ body {
 /*Footer Styling*/
 .footer {
   text-align: center;
-  border-top: solid 2px black;
+  border-top: solid 2px var(--main-brdr-clr);
 }
 
 /*Modal Styling*/
