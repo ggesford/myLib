@@ -85,6 +85,17 @@ body {
   --main-actn-clr: #893168;
 }
 /*Utility Classes*/
+.u-form-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.u-form-wrapper > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
 
 .u-icon--small {
   height: 2rem;
