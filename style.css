@@ -122,6 +122,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 10px;
+  border-color: var(--main-brdr-clr);
 }
 
 .u-tab {
@@ -129,9 +130,10 @@ body {
   border-top-right-radius: 10px;
   transform: translateY(36px);
   border-color: var(--main-brdr-clr);
-  background-color: var(--main-nav-clr);
+  background-color: var(--main-brdr-clr);
   width: 360px;
   color: var(--main-typ-clr);
+  border: none;
 }
 
 .u-tab:not(#u-active):hover {
@@ -173,6 +175,12 @@ body {
 .branding {
   display: flex;
 }
+
+.branding__frame {
+  border-radius: 10px;
+  background-color: var(--main-brdr-clr);
+}
+
 .branding__logo {
   height: 3rem;
 }
@@ -197,6 +205,7 @@ body {
   border-radius: 10px;
   margin-top: 16px;
   padding: 8px;
+  color: var(--main-typdark-clr);
 }
 
 .card__review {
@@ -231,7 +240,7 @@ body {
 }
 
 .card__button:hover {
-  background-color: lavender;
+  background-color: var(--main-actn-clr);
   cursor: pointer;
 }
 
@@ -251,6 +260,10 @@ body {
 .footer {
   text-align: center;
   border-top: solid 2px var(--main-brdr-clr);
+  background-color: var(--main-nav-clr);
 }
 
+.footer > a {
+  color: orange;
+}
 /*Modal Styling*/
