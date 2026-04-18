@@ -206,6 +206,7 @@ body {
   margin-top: 16px;
   padding: 8px;
   color: var(--main-typdark-clr);
+  box-shadow: 4px 4px 8px;
 }
 
 .card__review {
